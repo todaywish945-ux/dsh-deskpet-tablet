@@ -1,0 +1,27 @@
+# DSH bundle patch：把本插件挂进 profile
+# 形态与 @deepseek-ai/dsh-base 的 cordis.patch.yml 一致（insert 列表）。
+# 装配结果用 `dsh --dump-config` 校验。
+#
+# 自动拉起桌宠（可选）：把 autoStart 改为 true 并二选一填写——
+#   打包版：appPath 填桌宠安装后的 exe 路径，devMode 保持 false（exe 直拉，不依赖 npm/PATH）
+#   源码开发：devDir 填框架仓库目录，devMode 保持 true（npm run dev 拉起，冷启动约 10~25 秒）
+- insert:
+    - id: pet-deskpet-tablet
+      name: dsh-deskpet-tablet
+      config:
+        autoStart: false
+        greetOnStart: true
+        greetLine: 我上线啦，随时找我聊天哦～
+        announceOnTurnEnd: false
+        turnEndLine: 这轮任务收尾啦，有需要随时叫我～
+        port: 37820
+        token: ''
+        appPath: ''
+        devMode: true
+        devDir: ''
+        keepAlive: true
+        emotionReact: true
+        reactStreak: 2
+        reactCooldownMin: 60
+        workCare: true
+        careEveryMin: 90

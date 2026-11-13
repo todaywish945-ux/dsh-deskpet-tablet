@@ -1,0 +1,47 @@
+{
+  "name": "dsh-deskpet-tablet",
+  "version": "0.5.1",
+  "description": "把桌宠接入 DeepSeek Harness (dsh)：右缘窄条上视频、下对话，不挡主界面 + agent 工具（让她说话、做表情、接通/挂断通话）",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "license": "MIT",
+  "author": "todaywish945-ux",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "deskpet",
+    "pet",
+    "companion"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-tools": "*"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-tools": {
+      "optional": true
+    }
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": []
+    }
+  }
+}
