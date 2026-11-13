@@ -96,12 +96,26 @@ export function apply(ctx, config) {
   }
 
   async function bridge(method, path, body, timeoutMs) {
-    const response = await fetch(`${baseUrl}${path}`, {
-      method,
-      headers: headers(),
-      body: body === undefined ? undefined : JSON.stringify(body),
-      signal: AbortSignal.timeout(timeoutMs ?? (path === '/say' ? 150_000 : 5_000))
-    })
+    let response
+    try {
+      response = await fetch(`${baseUrl}${path}`, {
+        method,
+        headers: headers(),
+        body: body === undefined ? undefined : JSON.stringify(body),
+        signal: AbortSignal.timeout(timeoutMs ?? (path === '/say' ? 150_000 : 5_000))
+      })
+    } catch (error) {
+      const name = error?.name ?? ''
+      if (name === 'TimeoutError' || name === 'AbortError') {
+        throw new Error(`桌宠响应超时（${baseUrl}${path}）。桌宠可能在跑但卡住了——看 %APPDATA%\\deskpet-tablet\\logs\\ 最新日志，或重启桌宠再试。`)
+      }
+      const code = error?.cause?.code ?? error?.code ?? error?.message ?? '网络错误'
+      throw new Error(
+        `桌宠本体没有在运行（连不上 ${baseUrl}：${code}）。本插件只是遥控器——` +
+        '请先安装并启动桌宠框架：https://github.com/todaywish945-ux/deskpet-tablet ' +
+        '（框架仓库的 AUTOSETUP.md 可发给百度搭子全自动配置）。'
+      )
+    }
     const payload = await response.json().catch(() => ({}))
     return { status: response.status, ok: response.ok, body: payload ?? {} }
   }
