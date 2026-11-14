@@ -106,7 +106,7 @@ pnpm 对裸目录路径用 **link** 语义，profile 里是软链；Node ESM 按
 |---|---|---|
 | `autoStart` | `true` | 桌宠没在跑时自动拉起 |
 | `greetOnStart` | `true` | 连上桌宠后让她打一声招呼 |
-| `greetLine` | 「编码搭档上线啦…」 | 打招呼的台词 |
+| `greetLine` | 「我上线啦，随时找我聊天哦～」 | 打招呼的台词 |
 | `announceOnTurnEnd` | `false` | 每轮 agent 结束自动播报一句（每轮都响，较吵） |
 | `turnEndLine` | 「这轮任务收尾啦…」 | 收尾播报的台词 |
 | `port` | `37820` | 控制桥端口，与桌宠的 `PET_PLUGIN_PORT` 保持一致 |
