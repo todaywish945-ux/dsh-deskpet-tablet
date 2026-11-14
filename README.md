@@ -40,6 +40,16 @@ dsh (agent) ──工具调用──▶ dsh-deskpet-tablet ──HTTP──▶ �
 
 ## 安装（Windows，desktop profile）
 
+**推荐：一条命令从 GitHub 安装**（前提：已按框架仓库的 AUTOSETUP.md 装好[桌宠框架](https://github.com/todaywish945-ux/deskpet-tablet)）：
+
+```bash
+dsh plugin --profile desktop add github:todaywish945-ux/dsh-deskpet-tablet
+```
+
+锁定版本：`add github:todaywish945-ux/dsh-deskpet-tablet#v0.5.1`。
+
+<details><summary>本地开发安装（改源码即时生效，点开）</summary>
+
 ```bash
 # 1) 装依赖（bare 目录路径 = pnpm link 语义，改插件源码即时生效）
 cd ~/.dsh/profiles/desktop
@@ -56,9 +66,11 @@ pnpm add "<本插件目录>"
 dsh plugin --profile desktop add <本插件目录>
 ```
 
+</details>
+
 然后**重启 DeepSeek Harness 桌面端**即可。验证：随便让她一句
 「让她打个招呼」，agent 应调用 `pet_say`，桌宠开口说
-「编码搭档上线啦…」。
+「我上线啦，随时找我聊天哦～」。
 
 **启动联动**：`autoStart: true` + `devMode: true`（patch 默认）——dsh 启动
 时插件自动从 `devDir` 以 dev 模式拉起桌宠（冷启动约 10~25 秒，连上后她会打
